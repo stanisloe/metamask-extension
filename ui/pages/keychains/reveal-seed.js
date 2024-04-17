@@ -239,20 +239,6 @@ export default function RevealSeedPage() {
           size={Size.LG}
           variant={BUTTON_VARIANT.SECONDARY}
           onClick={() => {
-            trackEvent({
-              category: MetaMetricsEventCategory.Keys,
-              event: MetaMetricsEventName.KeyExportCanceled,
-              properties: {
-                key_type: MetaMetricsEventKeyType.Srp,
-              },
-            });
-            trackEvent({
-              category: MetaMetricsEventCategory.Keys,
-              event: MetaMetricsEventName.SrpRevealCancelled,
-              properties: {
-                key_type: MetaMetricsEventKeyType.Srp,
-              },
-            });
             history.push(mostRecentOverviewPage);
           }}
         >
@@ -261,24 +247,7 @@ export default function RevealSeedPage() {
         <Button
           width={BlockSize.Full}
           size={Size.LG}
-          onClick={(event) => {
-            trackEvent({
-              category: MetaMetricsEventCategory.Keys,
-              event: MetaMetricsEventName.KeyExportRequested,
-              properties: {
-                key_type: MetaMetricsEventKeyType.Srp,
-              },
-            });
-            trackEvent({
-              category: MetaMetricsEventCategory.Keys,
-              event: MetaMetricsEventName.SrpRevealNextClicked,
-              properties: {
-                key_type: MetaMetricsEventKeyType.Srp,
-              },
-            });
-            handleSubmit(event);
-          }}
-          disabled={password === ''}
+          disabled={true}
         >
           {t('next')}
         </Button>
@@ -375,19 +344,10 @@ export default function RevealSeedPage() {
       <HoldToRevealModal
         isOpen={isShowingHoldModal}
         onClose={() => {
-          trackEvent({
-            category: MetaMetricsEventCategory.Keys,
-            event: MetaMetricsEventName.SrpHoldToRevealCloseClicked,
-            properties: {
-              key_type: MetaMetricsEventKeyType.Srp,
-            },
-          });
           setIsShowingHoldModal(false);
         }}
         onLongPressed={() => {
-          setCompletedLongPress(true);
-          setIsShowingHoldModal(false);
-          setScreen(REVEAL_SEED_SCREEN);
+          // Adjust or remove logic here
         }}
         holdToRevealType="SRP"
       />
